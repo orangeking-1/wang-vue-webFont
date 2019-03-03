@@ -1,4 +1,4 @@
-let HOSTNAME = 'http://39.106.170.229'
+let HOSTNAME = '127.0.0.1'
 let PORT = '3333'
 let PATH = HOSTNAME + ':' + PORT
 export default {
