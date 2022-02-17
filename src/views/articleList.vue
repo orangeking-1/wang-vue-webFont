@@ -4,9 +4,9 @@
     <div class="article-con">
       <div class="article-list">
         <template v-if="articleListData.length > 0">
-          <div class="article-item" v-for="(item, index) in articleListData" :key="index">
+          <div class="article-item animated bounceInRight delay-.2s" v-for="(item, index) in articleListData" :key="index">
             <div class="article-title">
-              {{item.title}}
+              <span class="title-span" @click="toArticleDetailFunc(item._id)">{{item.title}}</span>
             </div>
             <div class="article-content">
               {{item.content}}
@@ -34,14 +34,15 @@
         :current-page.sync="currentPage"
         :page-size="pageSize"
         layout="total, prev, pager, next"
+        class="pagination"
         :total="total">
       </el-pagination>
 
-      <!--<div class="article-args">-->
-        <!--<div class="args-title">标签</div>-->
-        <!--<div class="args-item">121</div>-->
-        <!--<div class="args-item">121222222222</div>-->
-      <!--</div>-->
+<!--      <div class="article-args">-->
+<!--        <div class="args-title">标签</div>-->
+<!--        <div class="args-item">121</div>-->
+<!--        <div class="args-item">121222222222</div>-->
+<!--      </div>-->
     </div>
     <!--添加文章-->
     <el-tooltip effect="dark" content="添加文章" placement="bottom-start">
@@ -55,13 +56,14 @@ export default {
   name: 'articleList',
   data () {
     return {
-      loading: true,
+      loading: false,
       articleListData: [],
       pageSize: 5,
       currentPage: 1,
       total: 0,
       url: {
-        getArticleList: this.$wang.api.getArticleList
+        getArticleList: this.$wang.api.getArticleList,
+        getCommentlistUrl: this.$wang.api.getCommentlistUrl
       },
       canArticle: false
     }
@@ -74,6 +76,14 @@ export default {
       this.$router.push({ path: '/articleDetail', query: { articleId: articleId } })
     },
     getArticleListFunc () {
+      this.$wang.ajax({
+        url: this.url.getCommentlistUrl,
+        param: {
+          type: '1'
+        }
+      }).then(res => {
+        this.commentList = res.data
+      })
       this.$wang.ajax({
         url: this.url.getArticleList,
         param: {
@@ -96,7 +106,7 @@ export default {
     },
     // 判断是否有添加的文章的权限
     canAddArticleFunc () {
-      this.canArticle = this.$store.state.isLoginState && JSON.parse(sessionStorage.getItem('userInfo')).admin
+      this.canArticle = this.$store.state.isLoginState && JSON.parse(localStorage.getItem('userInfo')).admin
     }
   },
   created () {
@@ -107,17 +117,19 @@ export default {
 </script>
 
 <style scoped lang="sass">
-.el-pagination
+.pagination
   text-align: center
 .article
   height: 100%
   width: 100%
+  padding: .1rem
+  box-sizing: border-box
   display: flex
   flex-direction: column
   position: relative
   .title-tip
-    padding: 20px
-    font-size: 30px
+    padding: .2rem
+    font-size: .3rem
     font-weight: bold
     text-align: center
   .article-con
@@ -125,24 +137,31 @@ export default {
     width: 100%
     margin: 0 auto
     flex: 1
-    padding-top: 20px
+    padding-top: .2rem
+    padding-bottom: .2rem
     position: relative
     .article-list
       .article-item
-        background: #fff
-        padding: 20px
-        margin-bottom: 20px
+        transition: .5s all
+        background: linear-gradient(#3e9bfd40, rgba(0, 0, 0, 0))
+        padding: .2rem
+        margin-bottom: .2rem
         border-radius: 5px
-        border: 1px solid #ccc
+        box-shadow: 0 4px 8px rgba(0, 0, 0, .2)
         &:hover
-          box-shadow: 0px 0px 8px #999
+          box-shadow: 0 8px 16px rgba(0, 0, 0, .4)
           /*background: #c6c6c6!important*/
         .article-title
-          font-size: 24px
+          font-size: .24rem
           font-weight: bold
           overflow: hidden
           text-overflow: ellipsis
           white-space: nowrap
+          .title-span
+            cursor: pointer
+            color: #3da8f5
+            &:hover
+              color: #4078f2
         .article-content
           margin-top: 10px
           color: #808080
@@ -152,14 +171,16 @@ export default {
           white-space: nowrap
         .article-author
           margin-top: 15px
-          font-size: 14px
+          font-size: .14rem
           display: flex
           .first-div
             flex: 1
           .see-detail
             cursor: pointer
+            &:hover
+              color: #4078f2
       .no-article
-        font-size: 24px
+        font-size: .24rem
         font-weight: bold
         text-align: center
         height: 200px
@@ -177,4 +198,10 @@ export default {
     position: absolute
     right: 20px
     top: 20px
+</style>
+
+<style lang="sass">
+.article
+  .el-pagination .btn-prev,.el-pagination .btn-next,.el-pager li
+    background: #f5f5f5
 </style>

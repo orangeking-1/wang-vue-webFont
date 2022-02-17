@@ -58,7 +58,7 @@ export default {
     },
     // 判断是否有添加的项目的权限
     canAddProjectFunc () {
-      this.canAddProject = this.$store.state.isLoginState && JSON.parse(sessionStorage.getItem('userInfo')).admin
+      this.canAddProject = this.$store.state.isLoginState && JSON.parse(localStorage.getItem('userInfo')).admin
     }
   },
   created () {

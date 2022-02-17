@@ -5,6 +5,11 @@
 
 import axios from 'axios'
 import qs from 'qs'
+// 弹出框
+import Vue from 'vue'
+import { MessageBox } from 'element-ui'
+
+let times = 0
 
 // 封装axios库
 function httpPromies (opts = {}) {
@@ -48,6 +53,16 @@ function httpPromies (opts = {}) {
       }
     }).catch(e => {
       reject(e)
+      Vue.nextTick(async () => {
+        await MessageBox.alert(url + '接口请求失败，请稍候尝试', times + '提示111', {
+          confirmButtonText: '确定',
+          closeOnClickModal: true,
+          closeOnPressEscape: true,
+          callback: () => {
+            times++
+          }
+        })
+      })
       // this.$alert('数据请求失败，请稍后尝试', '提示')
     })
   })

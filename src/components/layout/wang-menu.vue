@@ -10,7 +10,7 @@
       <div class="nickname">
         <div class="nickname-con" v-if="$store.state.userInfo">
           <div>{{$store.state.userInfo.account}}</div>
-          <div>{{$store.state.userInfo.profile}}</div>
+          <div class="nickname-profile">{{$store.state.userInfo.profile}}</div>
         </div>
         <div v-else>
           <div>请先登陆</div>
@@ -35,11 +35,14 @@
       <el-menu-item index="/articleList">
         <span slot="title">文章</span>
       </el-menu-item>
+      <el-menu-item v-if="$store.state.userInfo"  index="/projectList">
+        <span slot="title">项目</span>
+      </el-menu-item>
       <el-menu-item index="/personalProfile">
         <span slot="title">简介</span>
       </el-menu-item>
-      <el-menu-item index="/projectList">
-        <span slot="title">项目</span>
+      <el-menu-item index="/messageBoard">
+        <span slot="title">留言板</span>
       </el-menu-item>
       <el-menu-item v-if="$store.state.userInfo" index="/userCenter">
         <span slot="title">个人中心</span>
@@ -80,7 +83,7 @@ export default {
   transform: translateX(-100%)
   display: flex
   flex-direction: column
-  box-shadow: 0 5px 15px 2px rgba(0, 0, 0, 0.16)
+  box-shadow: 0 2px 10px 2px rgba(0, 0, 0, 0.08)
   /*position: relative*/
   .personal-info
     padding: 20px
@@ -105,6 +108,8 @@ export default {
         overflow: hidden
         text-overflow: ellipsis
         white-space: nowrap
+      .nickname-profile
+        color: #666
       .login-register
         margin-top: 5px
         a

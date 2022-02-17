@@ -113,7 +113,7 @@ export default {
     },
     // 判断是否有修该、删除的文章的权限
     canChangeProjectFunc () {
-      this.canProject = this.$store.state.isLoginState && JSON.parse(sessionStorage.getItem('userInfo')).admin
+      this.canProject = this.$store.state.isLoginState && JSON.parse(localStorage.getItem('userInfo')).admin
     }
   },
   created () {
@@ -125,11 +125,13 @@ export default {
 
 <style scoped lang="sass">
 .project
-  max-width: 800px
+  max-width: 8rem
+  padding: 0 .1rem
+  box-sizing: border-box
   margin: 0 auto
   .title
-    padding: 20px
-    font-size: 30px
+    padding: .2rem
+    font-size: .3rem
     font-weight: bold
     text-align: center
   .projectImg
@@ -138,26 +140,26 @@ export default {
       height: 100%
       background-size: cover
   .con
-    margin-top: 30px
+    margin-top: .3rem
     .con-item
       display: flex
-      margin-bottom: 15px
-      font-size: 18px
+      margin-bottom: .15rem
+      font-size: .18rem
       .con-title
         span
           display: inline-block
-          width: 80px
+          width: .8rem
           background-color: #ddd
-          padding: 5px
+          padding: .05rem
           font-weight: bold
       .con-content
         flex: 1
-        max-width: 710px
+        max-width: 7.1rem
         word-wrap: break-word
-        padding-left: 15px
-        line-height: 36px
+        padding-left: .15rem
+        line-height: .36rem
   .btn
     position: absolute
-    right: 20px
-    top: 20px
+    right: .2rem
+    top: .2rem
 </style>

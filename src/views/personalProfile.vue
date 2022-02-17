@@ -2,7 +2,7 @@
   <div class="profile">
     <div class="title">关于我</div>
     <div class="profile-desc">
-      <img :src="avatarUrl" alt="">
+      <img src="@/assets/avatar.png" alt="">
       <div class="profile-name">王广航</div>
       <div class="profile-describe">
         <p>爱学习，爱编程，能快速学习使用新知识；</p>
@@ -72,18 +72,21 @@
         <div class="work-title">工作经历</div>
         <div class="work-con">
           <el-collapse accordion>
-            <el-collapse-item title="2016年6月-2017年7月 亿博科技有限公司（驻南方航空）" name="1">
-              <div>亿博科技为一家外包公司，由南方航空移动触屏部直接面试，并入场开发。</div>
-              <div>主要负责南航移动效能分析系统，并参与南航移动官网会员抽奖模块，韩国登机牌领取模块的前端开发。</div>
+            <el-collapse-item class="work-item-title" title="2016年6月-2017年7月 南方航空" name="1">
+              <div>主要负责南航移动效能分析系统，并参与南航移动官网会员抽奖模块，韩国登机牌领取等模块的前端开发。</div>
             </el-collapse-item>
-            <el-collapse-item title="2017年8月-2018年8月 猎程科技（深圳特色国际旅行社分公司）" name="2">
+            <el-collapse-item class="work-item-title" title="2017年8月-2018年8月 猎程科技" name="2">
               <div>公司产品前期主要面向导游/游客，对应开发有相应的微信公众号（猎行领队、猎行旅游）</div>
               <div>由于后期产品方向调整，产品定位为平台和商家，主推类型于商城的一个平台。开发有商家、平台管理后台。以及小程序（金米圈）</div>
             </el-collapse-item>
-            <el-collapse-item title="2018年10月-2019年1月 瀚阳国际" name="3">
-              <div>一家结合软件、土木相结合，主要做桥梁、铁路建筑的公司。</div>
-              <div>负责预制场平台管理系统，该系统服务于郑州四环线桥梁建设。提供给河南省一建、五建等各大梁场使用。</div>
-              <div>桥梁全生命周期检测管理系统，该系统主要用于桥梁的检测，智能管理。</div>
+            <el-collapse-item class="work-item-title" title="2018年8月-2019年2月 瀚阳国际" name="3">
+              <div>公司主要为桥梁等基础建设提供工程化信息。</div>
+              <div>负责郑州四环线-预制场、桥梁全生命周期管理系统的前端工作，及修改、补充前端的公用组件库</div>
+            </el-collapse-item>
+            <el-collapse-item class="work-item-title" title="2019年3月-至今 软通动力（驻百度）" name="4">
+              <div>主要负责网站的开发维护，以及网站的优化工作</div>
+              <div>参与需求调研，以及前端架构设计，接口设定</div>
+              <div>旧网站后端php开发维护</div>
             </el-collapse-item>
           </el-collapse>
         </div>
@@ -91,7 +94,7 @@
       <div class="call-me">
         <div class="callMe-title">与我联系</div>
         <div class="callMe-con">
-          <el-tooltip class="item" effect="dark" content="xiaozai314230" placement="top">
+          <el-tooltip class="item" effect="dark" content="wgh202134" placement="top">
             <div class="icon" style="background: #6F92FF">
               <i class="iconfont icon-weixin1" style="color: #fff;font-size: 50px"></i>
             </div>
@@ -120,13 +123,11 @@
 </template>
 
 <script>
-import config from '../config/config'
-
 export default {
   name: 'personalProfile',
   data () {
     return {
-      avatarUrl: config.PATH + '/assets/avatar.png'
+      // avatarUrl: config.PATH + '/assets/avatar.png'
     }
   },
   methods: {
@@ -145,12 +146,12 @@ export default {
   margin: 0 auto
   background: #fff
   box-shadow: 0px 0px 5px #ccc
-  padding-bottom: 50px
+  padding-bottom: .2rem
   .title
-    padding: 20px
+    padding: .2rem
     font-weight: bold
     text-align: center
-    font-size: 30px
+    font-size: .3rem
   .profile-desc
     margin-top: 30px
     text-align: center
@@ -172,10 +173,10 @@ export default {
       background-color: #f6f6f6
       padding: 8px
       font-weight: bold
-      font-size: 20px
+      font-size: .2rem
     .skill-con
-      padding: 30px
-      width: 600px
+      padding: .3rem
+      max-width: 6rem
       margin: 0 auto
       .skill-cell
         display: flex
@@ -190,22 +191,31 @@ export default {
     margin-top: 20px
     .work-title
       background-color: #f6f6f6
-      padding: 8px
+      padding: .08rem
       font-weight: bold
-      font-size: 20px
+      font-size: .2rem
   .call-me
     .callMe-title
       background-color: #f6f6f6
       padding: 8px
       font-weight: bold
-      font-size: 20px
+      font-size: .2rem
     .callMe-con
-      padding: 30px
+      padding: .3rem
       .icon
         display: inline-block
-        width: 80px
-        height: 80px
-        line-height: 80px
-        border-radius: 45px
-        margin: 0 20px
+        width: .8rem
+        height: .8rem
+        line-height: .8rem
+        border-radius: .45rem
+        margin: 0 .2rem .1rem
+</style>
+<style lang="sass">
+.profile
+  .work-con
+    .work-item-title
+      .el-collapse-item__header
+        overflow: hidden
+        text-overflow: ellipsis
+        white-space: nowrap
 </style>

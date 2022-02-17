@@ -2,7 +2,11 @@
   <div id="app">
     <wangMenu class="app-menu" :class="{'open-menu': $store.state.openSidebar}"></wangMenu>
     <!--点击按钮-->
-    <div class="toggle-btn" :class="{'open-menu': $store.state.openSidebar}" @click="toggleSidebarFunc">橙子国王</div>
+    <div class="toggle-btn" :class="{'open-menu': $store.state.openSidebar}" @click="toggleSidebarFunc">
+      <i v-show="!$store.state.openSidebar" class="el-icon-s-fold"></i>
+      <i v-show="$store.state.openSidebar" class="el-icon-s-unfold"></i>
+      橙子国王
+      </div>
     <div class="content" :class="{'open-menu': $store.state.openSidebar}" @click="colseSidebarFunc">
       <transition
         mode="out-in"
@@ -11,7 +15,7 @@
         <router-view/>
       </transition>
     </div>
-    <link rel="stylesheet" href="//at.alicdn.com/t/font_1043452_z9kgqvslxha.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_1043452_68eyuj52hyd.css">
   </div>
 </template>
 <script>
@@ -35,7 +39,7 @@ export default {
     },
     // 判断登陆状态
     checkLoginStateFunc () {
-      if (sessionStorage.getItem('userInfo')) {
+      if (localStorage.getItem('userInfo')) {
         this.$store.state.isLoginState = true
       } else {
         this.$store.state.isLoginState = false
@@ -81,6 +85,7 @@ export default {
     &.open-menu
       transform: translateX(280px)
   .content
+    width: 100%
     flex: 1
     transition: all 0.5s ease
     &.open-menu

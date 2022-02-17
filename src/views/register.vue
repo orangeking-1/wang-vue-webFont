@@ -22,6 +22,7 @@
 </template>
 
 <script>
+import BMap from 'BMap'
 export default {
   name: 'register',
   data () {
@@ -29,7 +30,8 @@ export default {
       userForm: {
         account: '',
         password: '',
-        againPassword: ''
+        againPassword: '',
+        addr: ''
       },
       rules: {
         account: [
@@ -47,6 +49,10 @@ export default {
       },
       url: {
         registerUrl: this.$wang.api.registerUrl
+      },
+      position: {
+        province: '',
+        city: ''
       }
     }
   },
@@ -64,6 +70,7 @@ export default {
             })
             return false
           }
+          this.userForm.addr = this.position.province + this.position.city
           this.$wang.ajax({
             url: this.url.registerUrl,
             param: this.userForm
@@ -91,27 +98,40 @@ export default {
     },
     resetForm (formName) {
       this.$refs[formName].resetFields()
+    },
+    getLocation () {
+      const geolocation = new BMap.Geolocation()
+      var _this = this
+      geolocation.getCurrentPosition(function getinfo (position) {
+        _this.position.city = position ? position.address.city : '' // 获取城市信息
+        _this.position.province = position ? position.address.province : '' // 获取省份信息
+      }, function (e) {
+      }, { provider: 'baidu' })
     }
+  },
+  mounted () {
+    this.getLocation()
   }
 }
 </script>
 
 <style scoped lang="sass">
   .login-con
-    min-width: 350px
+    min-width: 3.5rem
     position: absolute
     top: 50%
     left: 50%
     transform: translate(-50%, -50%)
     background-color: #fff
     box-shadow: 0px 0px 10px #ccc
-    padding: 40px
+    padding: .3rem
+
     .tipRegister
       float: right
       text-align: right
-      font-size: 12px
+      font-size: .12rem
       color: #3da8f5
       cursor: pointer
       line-height: 1
-      margin-top: 25px
+      margin-top: .25rem
 </style>

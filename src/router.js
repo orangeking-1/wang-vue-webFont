@@ -66,6 +66,11 @@ export default new Router({
       path: '/personalProfile',
       name: 'personalProfile',
       component: () => import('./views/personalProfile.vue')
+    },
+    {
+      path: '/messageBoard',
+      name: 'messageBoard',
+      component: () => import('./views/messageBoard.vue')
     }
   ]
 })

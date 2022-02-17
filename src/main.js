@@ -12,8 +12,15 @@ import base64 from './common/changeBase64.js'
 import VueSimplemde from 'vue-simplemde'
 import 'simplemde/dist/simplemde.min.css'
 
+// 动画库
+import animate from 'animate.css'
+
+// 引入pwa的server-work
+// import './registerServiceWorker'
+
 Vue.use(ElementUI)
 Vue.use(VueSimplemde)
+Vue.use(animate)
 
 // 全局变量挂载到Vue.prototype上去
 Vue.prototype.$wang = {
@@ -21,6 +28,16 @@ Vue.prototype.$wang = {
   api: API,
   base64: base64
 }
+
+// 加入百度统计
+router.beforeEach((to, from, next) => {
+  // 统计代码
+  if (to.path) {
+    // eslint-disable-next-line
+    _hmt.push(['_trackPageview', '/#' + to.fullPath])
+  }
+  next()
+})
 
 Vue.config.productionTip = false
 

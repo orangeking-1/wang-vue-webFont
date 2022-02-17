@@ -101,6 +101,8 @@ export default {
 <style scoped lang="sass">
 .user-content
   max-width: 800px
+  padding: 0 .1rem
+  box-sizing: border-box
   margin: 40px auto 100px
   .user-avatar
     padding-left: 80px

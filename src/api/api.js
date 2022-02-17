@@ -17,5 +17,8 @@ export default {
   getProjectListUrl: PATH + '/api/getProjectList',
   getProjectDetailUrl: PATH + '/api/getProjectDetail',
   deleteProjectUrl: PATH + '/api/deleteProject',
-  editProjectUrl: PATH + '/api/editProject'
+  editProjectUrl: PATH + '/api/editProject',
+  getCommentlistUrl: PATH + '/api/getCommentList',
+  addCommentUrl: PATH + '/api/addComment',
+  deleteCommentUrl: PATH + '/api/deleteComment'
 }

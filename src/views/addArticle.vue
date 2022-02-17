@@ -8,7 +8,9 @@
     </div>
     <div class="content">
       <div class="title">内容：</div>
-      <markdown-editor class="md-editor" v-model="content" :highlight="true" :sanitize="true" ref="markdownEditor"></markdown-editor>
+      <div class="markdown-editor-div">
+        <markdown-editor class="md-editor" v-model="content" :highlight="true" :sanitize="true" ref="markdownEditor"></markdown-editor>
+      </div>
     </div>
     <div class="btn">
       <el-button type="primary" plain @click="addArticleFunc">添加</el-button>
@@ -45,7 +47,7 @@ export default {
         return false
       }
       let param = {
-        author: JSON.parse(sessionStorage.getItem('userInfo'))._id,
+        author: JSON.parse(localStorage.getItem('userInfo'))._id,
         title: this.title,
         content: this.content
       }
@@ -79,7 +81,7 @@ export default {
     margin-bottom: 30px
     display: flex
     .title
-      width: 70px
+      width: 75px
       line-height: 40px
       font-size: 20px
       font-weight: bold
@@ -89,7 +91,7 @@ export default {
       line-height: 40px
       font-size: 20px
       font-weight: bold
-    .markdown-editor
+    .markdown-editor-div
       flex: 1
   .btn
     text-align: center

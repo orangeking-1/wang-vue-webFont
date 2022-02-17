@@ -1,7 +1,7 @@
 <template>
   <div class="login-con">
     <div>
-      <el-form :model="userForm" :rules="rules" ref="userForm" label-width="50px" label-position="left" class="demo-ruleForm">
+      <el-form :model="userForm" :rules="rules" ref="userForm" label-width="60px" label-position="left" class="demo-ruleForm">
         <el-form-item label="账号" prop="account">
           <el-input v-model="userForm.account" clearable></el-input>
         </el-form-item>
@@ -63,7 +63,7 @@ export default {
                 message: '登录成功'
               })
               this.$store.commit('setUserInfo', res.data)
-              this.$router.push('/')
+              this.$router.back(-1)
             } else {
               this.$message.error(res.data)
             }
@@ -83,20 +83,20 @@ export default {
 
 <style scoped lang="sass">
 .login-con
-  min-width: 350px
+  min-width: 3.5rem
   position: absolute
   top: 50%
   left: 50%
   transform: translate(-50%, -50%)
   background-color: #fff
   box-shadow: 0px 0px 10px #ccc
-  padding: 40px
+  padding: .3rem
   .tipRegister
     color: #3da8f5
     float: right
     text-align: right
-    font-size: 12px
+    font-size: .12rem
     cursor: pointer
     line-height: 1
-    margin-top: 25px
+    margin-top: .25rem
 </style>

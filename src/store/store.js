@@ -7,7 +7,7 @@ export default new Vuex.Store({
   state: {
     openSidebar: false,
     isLoginState: false,
-    userInfo: JSON.parse(sessionStorage.getItem('userInfo')) || ''
+    userInfo: JSON.parse(localStorage.getItem('userInfo')) || ''
   },
   mutations: {
     // 侧边菜单栏变化
@@ -22,18 +22,18 @@ export default new Vuex.Store({
     setUserInfo (state, info) {
       state.userInfo = info
       state.isLoginState = true
-      sessionStorage.setItem('userInfo', JSON.stringify(info))
+      localStorage.setItem('userInfo', JSON.stringify(info))
     },
     removeUserInfo (state) {
       state.userInfo = ''
       state.isLoginState = false
-      sessionStorage.removeItem('userInfo')
+      localStorage.removeItem('userInfo')
     }
   },
   getters: {
     getStorage (state) {
       if (!state.userInfo) {
-        state.userInfo = JSON.parse(sessionStorage.getItem('userInfo'))
+        state.userInfo = JSON.parse(localStorage.getItem('userInfo'))
       }
       return state.userInfo
     }
