@@ -18,15 +18,45 @@ import animate from 'animate.css'
 // 引入pwa的server-work
 // import './registerServiceWorker'
 
+// 引入sentry日志监控系统
+import * as Sentry from '@sentry/vue'
+import { BrowserTracing } from '@sentry/tracing'
+
 Vue.use(ElementUI)
 Vue.use(VueSimplemde)
 Vue.use(animate)
+
+// 配置sentry
+Sentry.init({
+  Vue,
+  dsn: 'https://95b443cd83a240f6a7acf817c133ceae@o1156786.ingest.sentry.io/6238438',
+  integrations: [
+    new BrowserTracing({
+      routingInstrumentation: Sentry.vueRouterInstrumentation(router),
+      tracingOrigins: ['localhost', 'wangguanghang.com', /^\//]
+    })
+  ],
+  // Set tracesSampleRate to 1.0 to capture 100%
+  // of transactions for performance monitoring.
+  // We recommend adjusting this value in production
+  tracesSampleRate: 1.0
+})
+// 自定义用户信息
+Sentry.configureScope(function (scope) {
+  scope.setTag('userInfo', '用户信息上传')
+  scope.setUser({
+    id: 42,
+    email: 'john.doe@example.com',
+    phone: '13213527964'
+  })
+})
 
 // 全局变量挂载到Vue.prototype上去
 Vue.prototype.$wang = {
   ajax: HTTP,
   api: API,
-  base64: base64
+  base64: base64,
+  Sentry: Sentry
 }
 
 // 加入百度统计

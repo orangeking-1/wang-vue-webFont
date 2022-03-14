@@ -89,6 +89,13 @@ export default {
   },
   created () {
     this.getCommentFunc()
+    let oneLever = {
+      type: '1',
+      content: '手动上报错误信息'
+    }
+    console.log(this.$wang.Sentry)
+    // throw new Error(JSON.stringify(oneLever))
+    this.$wang.Sentry.captureMessage('付费功能', JSON.stringify(oneLever))
   }
 }
 </script>
