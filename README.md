@@ -4,7 +4,6 @@
 ```
 npm install
 ```
-333333
 
 ### Compiles and hot-reloads for development
 ```
