@@ -1,7 +1,7 @@
 <template>
-  <div class="article" v-loading="loading">
+  <div class="article">
     <div class="title-tip">全部文章</div>
-    <div class="article-con">
+    <div class="article-con" v-loading="loading">
       <div class="article-list">
         <template v-if="articleListData.length > 0">
           <div class="article-item animated bounceInRight delay-.2s" v-for="(item, index) in articleListData" :key="index">
@@ -56,7 +56,7 @@ export default {
   name: 'articleList',
   data () {
     return {
-      loading: false,
+      loading: true,
       articleListData: [],
       pageSize: 5,
       currentPage: 1,
@@ -96,6 +96,8 @@ export default {
           this.articleListData = res.data.listData
           this.loading = false
         }
+      }).catch(() => {
+        this.loading = false
       })
     },
     handleSizeChange () {
