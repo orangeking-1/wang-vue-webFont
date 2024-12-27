@@ -13,6 +13,7 @@
     "@sentry/vue": "^6.18.1",
     "animate.css": "^3.7.2",
     "axios": "^0.18.1",
+    "codemirror": "^6.0.1",
     "element-ui": "^2.15.1",
     "file-saver": "^2.0.0",
     "highlight.js": "^9.14.2",
