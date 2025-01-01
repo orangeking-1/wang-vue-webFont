@@ -9,6 +9,7 @@ if (process.env.NODE_ENV === 'production') {
   HOSTNAME = 'http://localhost'
   PORT = '3333'
   PATH = HOSTNAME + ':' + PORT
+  // PATH = 'https://wangguanghang.com'
 }
 export default {
   HOSTNAME,
