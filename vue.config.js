@@ -5,18 +5,18 @@ module.exports = {
   },
 
   // 加入babel编译代码
-  chainWebpack: config => {
-    config.module
-      .rule('js')
-      .use('babel-loader')
-      .loader('babel-loader')
-      .tap(options => {
-        return {
-          ...options,
-          presets: ['@babel/preset-env']
-        }
-      })
-  },
+  // chainWebpack: config => {
+  //   config.module
+  //     .rule('js')
+  //     .use('babel-loader')
+  //     .loader('babel-loader')
+  //     .tap(options => {
+  //       return {
+  //         ...options,
+  //         presets: ['@babel/preset-env']
+  //       }
+  //     })
+  // },
 
   // 引入百度地图
   configureWebpack: {
