@@ -1,3 +1,6 @@
+// 使用webpack-bundle-analyzer进行bundle分析
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+
 module.exports = {
   devServer: {
     port: 8888,
@@ -36,5 +39,15 @@ module.exports = {
       maskIcon: 'img/icons/gen.svg',
       msTileImage: 'ifavicon.ico'
     }
-  }
+  },
+
+
+
+
+ /* webpack相关配置   *该对象将会被 webpack-merge 合并入最终的 webpack 配置   */
+//   configureWebpack: (config) => {
+//     config.plugins.push(new BundleAnalyzerPlugin());
+//  }
+
+
 }

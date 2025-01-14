@@ -1,6 +1,6 @@
 <template>
   <div class="article" v-loading="loading">
-    <div class="title-tip">全部文章</div>
+    <div class="title-tip">{{showSearchInput ? `“${search}”相关` : '全部文章'}}</div>
     <div class="article-con">
       <div class="article-list">
         <template v-if="articleListData.length > 0">
@@ -44,10 +44,17 @@
 <!--        <div class="args-item">121222222222</div>-->
 <!--      </div>-->
     </div>
-    <!--添加文章-->
-    <el-tooltip effect="dark" content="添加文章" placement="bottom-start">
-      <el-button v-if="canArticle" class="add-article" type="primary" icon="el-icon-plus" circle @click="addArticleFunc"></el-button>
-    </el-tooltip>
+    <div class="article-function">
+      <!-- 搜索 -->
+      <div class="search-article">
+        <el-button v-if="!showSearchInput" type="primary" icon="el-icon-search" circle @click="showSearchInput = true"></el-button>
+        <el-input v-if="showSearchInput" class="animated bounceIn delay-.1s" prefix-icon="el-icon-search" v-model="search" placeholder="请输入，回车搜素" clearable @clear="searchClearFunc" @change="searchFunc"></el-input>
+      </div>
+      <!--添加文章-->
+      <el-tooltip effect="dark" content="添加文章" placement="bottom-start">
+        <el-button v-if="canArticle" class="add-article" type="primary" icon="el-icon-plus" circle @click="addArticleFunc"></el-button>
+      </el-tooltip>
+    </div>
   </div>
 </template>
 
@@ -57,6 +64,8 @@ export default {
   data () {
     return {
       loading: false,
+      showSearchInput: false,
+      search: '',
       articleListData: [],
       pageSize: 5,
       currentPage: 1,
@@ -88,7 +97,8 @@ export default {
         url: this.url.getArticleList,
         param: {
           pageSize: this.pageSize,
-          currentPage: this.currentPage
+          currentPage: this.currentPage,
+          search: this.search
         }
       }).then(res => {
         if (res.code === 0) {
@@ -107,6 +117,16 @@ export default {
     // 判断是否有添加的文章的权限
     canAddArticleFunc () {
       this.canArticle = this.$store.state.isLoginState && JSON.parse(localStorage.getItem('userInfo')).admin
+    },
+    searchFunc () {
+      if (this.search === '') {
+        this.showSearchInput = false
+      }
+      this.getArticleListFunc()
+    },
+    searchClearFunc () {
+      this.search = ''
+      this.showSearchInput = false
     }
   },
   created () {
@@ -194,10 +214,13 @@ export default {
       .args-title
         font-size: 18px
         font-weight: bold
-  .add-article
+  .article-function
     position: absolute
     right: 20px
     top: 20px
+    display: flex
+    .search-article
+      margin-right: 10px
 </style>
 
 <style lang="sass">
