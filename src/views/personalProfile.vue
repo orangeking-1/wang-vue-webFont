@@ -83,11 +83,11 @@
               <div>公司主要为桥梁等基础建设提供工程化信息。</div>
               <div>负责郑州四环线-预制场、桥梁全生命周期管理系统的前端工作，及修改、补充前端的公用组件库</div>
             </el-collapse-item>
-            <el-collapse-item class="work-item-title" title="2019年3月-至今 软通动力（驻百度）" name="4">
+            <!-- <el-collapse-item class="work-item-title" title="2019年3月-至今 软通动力（驻百度）" name="4">
               <div>主要负责网站的开发维护，以及网站的优化工作</div>
               <div>参与需求调研，以及前端架构设计，接口设定</div>
               <div>旧网站后端php开发维护</div>
-            </el-collapse-item>
+            </el-collapse-item> -->
           </el-collapse>
         </div>
       </div>
@@ -109,9 +109,9 @@
               <i class="iconfont icon-youxiang" style="color: #fff;font-size: 50px"></i>
             </div>
           </el-tooltip>
-          <el-tooltip class="item" effect="dark" content="orangkingliness" placement="top">
+          <el-tooltip class="item" effect="dark" content="orangking-1" placement="top">
             <div class="icon" style="background: #7782D1">
-              <a href="https://github.com/orangekingliness" target="view_window">
+              <a href="https://github.com/orangeking-1" target="view_window">
                 <i class="iconfont icon-github" style="color: #fff;font-size: 50px"></i>
               </a>
             </div>

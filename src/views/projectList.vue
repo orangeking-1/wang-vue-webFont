@@ -1,12 +1,14 @@
 <template>
-  <div class="project" v-loading="loading">
+  <div class="project">
     <div class="title-tip">全部项目</div>
     <template v-if="projectListData.length > 0">
-      <div class="project-item" v-for="(item, index) in projectListData" :key="index" @click="toProjectDetailFunc(item._id)">
-        <el-tooltip class="item" effect="dark" :content="item.name" placement="top">
-          <!--<img :src="item.img[0].url" alt="">-->
-          <div class="project-item-img"  :style="{backgroundImage: 'url(' + item.img[0].url + ')'}"></div>
-        </el-tooltip>
+      <div v-loading="loading">
+        <div class="project-item" v-for="(item, index) in projectListData" :key="index" @click="toProjectDetailFunc(item._id)">
+          <el-tooltip class="item" effect="dark" :content="item.name" placement="top">
+            <!--<img :src="item.img[0].url" alt="">-->
+            <div class="project-item-img"  :style="{backgroundImage: 'url(' + item.img[0].url + ')'}"></div>
+          </el-tooltip>
+        </div>
       </div>
     </template>
     <template v-else>
@@ -54,6 +56,8 @@ export default {
             type: 'warning'
           })
         }
+      }).catch(() => {
+        this.loading = false
       })
     },
     // 判断是否有添加的项目的权限

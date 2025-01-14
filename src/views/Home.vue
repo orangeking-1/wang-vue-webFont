@@ -3,8 +3,9 @@
     <el-carousel ref="carousel" class="carousel" height="100%" :autoplay="false" indicator-position="none" arrow="never">
       <el-carousel-item>
         <div class="con">
-          <p>Orangekingliness</p>
+          <p>Orangeking</p>
           <p>不忘初心，才能始终</p>
+          <div class="beian"><a href="https://beian.miit.gov.cn/" target="_blank">豫ICP备19008041号-1</a></div>
         </div>
       </el-carousel-item>
       <el-carousel-item>
@@ -234,6 +235,15 @@ export default {
     p
       text-shadow: 2px 2px 1px rgba(0,0,0,.6)
       margin: 20px 0
+    .beian
+      a
+        color: #363741
+        font-size: 12px
+        // opacity: 0.5
+        position: absolute
+        bottom: 0
+        translate: -50%
+        cursor: auto
   .indicator
     position: absolute
     bottom: 20px
@@ -252,6 +262,9 @@ export default {
       align-items: center
       justify-content: center
       cursor: pointer
+@media screen and (max-width: 700px)
+  .beian
+    display: none
 </style>
 <style lang="sass">
 .home

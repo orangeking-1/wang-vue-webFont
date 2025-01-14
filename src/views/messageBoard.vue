@@ -4,7 +4,7 @@
       <img src="../assets/messageBoard.png" alt="message-img">
       <div class="message-font">留言板</div>
     </div>
-    <div class="message-con">
+    <div class="message-con" v-loading="loading">
       <comment title="留言" :commentList="commentList" v-on:submitComment="addCommentFunc" v-on:deleteCommment="deleteCommmentFunc"></comment>
     </div>
   </div>
@@ -19,6 +19,7 @@ export default {
   },
   data () {
     return {
+      loading: true,
       commentList: [],
       url: {
         addCommentUrl: this.$wang.api.addCommentUrl,
@@ -36,7 +37,10 @@ export default {
           type: '1'
         }
       }).then(res => {
+        this.loading = false
         this.commentList = res.data
+      }).catch(() => {
+        this.loading = false
       })
     },
     // 添加留言列表

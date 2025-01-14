@@ -106,6 +106,8 @@ export default {
           this.articleListData = res.data.listData
           this.loading = false
         }
+      }).catch(() => {
+        this.loading = false
       })
     },
     handleSizeChange () {
