@@ -31,7 +31,7 @@ module.exports = {
   // 配置pwa
   pwa: {
     name: 'orangeking',
-    themeColor: '#4DBA87',
+    themeColor: '#EDA039',
     msTileColor: '#000000',
     appleMobileWebAppCapable: 'yes',
     appleMobileWebAppStatusBarStyle: '#ffffff',
@@ -47,9 +47,9 @@ module.exports = {
     },
     // 配置icon
     iconPaths: {
-      favicon32: 'ifavicon.ico',
-      favicon16: 'ifavicon.ico',
-      appleTouchIcon: 'ifavicon.ico',
+      favicon32: 'img/icons/32x32.png',
+      favicon16: 'img/icons/16x16.png',
+      appleTouchIcon: 'img/icons/152x152.png',
       maskIcon: 'img/icons/gen.svg',
       msTileImage: 'ifavicon.ico'
     }

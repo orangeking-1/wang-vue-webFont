@@ -1,4 +1,4 @@
-importScripts("/precache-manifest.c659c65d3dfebd51eb588419618b84b3.js", "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
+importScripts("/precache-manifest.66e42da216411420576bd14c5c05daf6.js", "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 // 监听 server worker安装事件
 // self.addEventListener('install', function (e) {
